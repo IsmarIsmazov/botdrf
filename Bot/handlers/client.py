@@ -1,14 +1,14 @@
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 
-from Bot.app import dp, bot
-from Bot.backend.datafetcher import get, list_product
-from Bot.handlers.FsmProduct import ProductState
-from Bot.keyboards.client_kb import inline_kb
+from app import dp, bot
+from backend.datafetcher import get, list_product
+from handlers.FsmProduct import ProductState
+from keyboards.client_kb import inline_kb
 
 
 async def start(message: types.Message):
-    await bot.send_message(message.from_user.id, f'Привет {message.from_user.first_name}!\n'
+    await bot.send_message(message.from_user.id, f'Привет {message.chat.id}!\n'
                                                  f'Вот команды которые у нас есть: \n'
                                                  f'/info : Инфорация об онлайн магазине \n'
                                                  f'/random : Выводит рандомный товар из магазина \n'
