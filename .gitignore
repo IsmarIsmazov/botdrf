@@ -2,3 +2,5 @@
 .idea
 __pycacha__/
 venv
+DRFBOT/key.pem
+DRFBOT/cert.pem

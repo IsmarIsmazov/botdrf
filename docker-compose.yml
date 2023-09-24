@@ -16,7 +16,7 @@ services:
     build:
       context: ./DRFBOT/
       dockerfile: Dockerfiledb
-    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver_plus --cert-file cert.pem --key-file key.pem 0.0.0.0:8000"
     container_name: Drf
     image: drftelbot1-drf
     env_file:
