@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+  bot:
+    build:
+      context: ./Bot/
+      dockerfile: Dockerfile
+    command: sh -c "python main.py"
+    container_name: bot
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    networks:
+      - bot
+  DRF:
+    build:
+      context: ./DRFBOT/
+      dockerfile: Dockerfiledb
+    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    container_name: Drf
+    image: drftelbot1-drf
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    networks:
+      - backend
+networks:
+  bot:
+    driver: bridge
+  backend:
+    driver: bridge

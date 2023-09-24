@@ -1,2 +1,2 @@
-PRODUCT_API_URL_RANDOM = "http://127.0.0.1:8000/random/"
-PRODUCT_API_URL_LIST = "http://127.0.0.1:8000/products/"
+PRODUCT_API_URL_RANDOM = "http://0.0.0.0:8000/random/"
+PRODUCT_API_URL_LIST = "http://0.0.0.0:8000/products/"
