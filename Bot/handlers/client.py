@@ -8,13 +8,16 @@ from keyboards.client_kb import inline_kb
 
 
 async def start(message: types.Message):
-    await bot.send_message(message.from_user.id, f'Привет {message.chat.id}!\n'
+    await bot.send_message(message.from_user.id, f'Привет {message.chat.first_name}!\n'
                                                  f'Вот команды которые у нас есть: \n'
-                                                 f'/info : Инфорация об онлайн магазине \n'
+                                                 f'/info : Инфорация об самого бота и онлайн магазина \n'
                                                  f'/random : Выводит рандомный товар из магазина \n'
                                                  f'/products : Выводит все продукты которые у нас есть \n', )
 
-
+async def info(message: types.Message):
+    await bot.send_message(message.from_user.id, f"Данный бот создан просто для уведомление владельцев сайта\n"
+                                                 f"сам же сайт - это онлайн магазин, в котором можно заказать тот или иной товар, после чего "
+                                                 f"с вами свяжется сам владелец товара")
 async def random_product(message: types.Message, state: FSMContext):
     res = await get()
     async with state.proxy() as data:
@@ -44,6 +47,7 @@ async def products(message: types.Message, state: FSMContext):
 
 
 def register_handlers_client(dp: Dispatcher):
+    dp.register_message_handler(info, commands=['info'])
     dp.register_message_handler(start, commands=['start'])
     dp.register_message_handler(random_product, commands=['random'], state=['*'])
     dp.register_message_handler(products, commands=['products'])
