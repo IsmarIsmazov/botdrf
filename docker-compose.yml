@@ -1,5 +1,14 @@
 version: '3.9'
 services:
+  nginx:
+    build:
+      context: ./nginx/
+      dockerfile: Dockerfilenginx
+    ports:
+      - "80:80"
+    depends_on:
+      - DRF
+
   bot:
     build:
       context: ./Bot/
@@ -11,7 +20,7 @@ services:
     ports:
       - "8080:8080"
     networks:
-      - bot
+      - backend
   DRF:
     build:
       context: ./DRFBOT/
@@ -24,9 +33,10 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - backend
+      - bot
 networks:
   bot:
     driver: bridge
   backend:
     driver: bridge
+
